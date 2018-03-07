@@ -1,0 +1,580 @@
+<!-- Students: Our work lies in the js file. -->
+
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Trivia</title>
+
+    <!-- Our CSS style sheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--link rel="stylesheet" href="assets/style.css"-->
+
+  </head>
+  <body>
+    <h1>Totally Trivial Trivia</h1>
+    <div id="timer"></div>
+    <div id="question_div">Question: </div>
+    <div class="btn-group-vertical">
+        <button type="button" id = "button1" class="btn btn-secondary"></button>
+        <button type="button" id = "button2" class="btn btn-secondary"></button>
+        <button type="button" id = "button3" class="btn btn-secondary"></button>
+        <button type="button" id = "button4" class="btn btn-secondary"></button>
+
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript">
+
+//variable for questions and answer choices
+
+var questions = [{
+  question: "What was the name of Harry's owl?", 
+  answers: ["Gerald", "Mortimer", "Hedwig", "Pricilla"],
+  correct: 2,
+},{
+  question: "Who killed Dumbledore?", 
+  answers: [ "Remus Lupin", "Severus Snape", "Voldemort", "Harry"],
+  correct: 1,
+},{
+  question: "What kind of muggle car did Ron's father own?", 
+  answers: ["Ford Anglia", "Cadillac Deville", "Honda Civic", "Ford Edsel"],
+  correct: 0,
+},{
+  question: "Who had the nickname Moony?", 
+  answers: ["Sirius Black", "Delores Umbridge", "Draco Malfoy", "Remus Lupin"],
+  correct: 3,
+},{
+  question: "What did Harry use to breath underwater during the Triwizard Tournament?", 
+  answers: ["Gillyweed", "The Bubblehead Charm", "Polyjuice Potion","A snorkel"],
+  correct: 0,
+},{
+  question: "What was the name of the three-headed dog that protected the door to the Sorcerer's Stone?", 
+  answers: ["Alfie", "Muffin", "Fluffy", "Reginald"],
+  correct: 2,
+},{
+  question: "What treat did Hagrid often make for Harry?", 
+  answers: ["Ice cream", "Treacle pudding", "Cheesecake", "Rock cakes"],
+  correct: 3,
+},{
+  question: "How did Harry, Hermione, and Ron sneak into the Ministry of Magic?", 
+  answers: ["They apparated in", "With Arthur Weasley",  "Under the Cloak of Invisibility", "Through a toilet"],
+  correct: 3,
+},{
+  question: "What job at Hogwarts did Snape want?", 
+  answers: ["Professor of Divination", "Professor of Defense Against the Dark Arts", "Professor of Herbology", "Headmaster"],
+  correct: 1,
+},{
+  questions: "What was the final Horcrux?",
+  answers: ["The Sword of Godric Gryffindor", "Voldemort", "Nagini", "Harry"],
+  correct: 3,
+
+}]
+
+var correct = 0;
+var incorrect = 0;
+var current = 0;
+var count = 5;
+var button1 = document.getElementById("button1");
+var button2 = document.getElementById("button2");
+var button3 = document.getElementById("button3");
+var button4 = document.getElementById("button4");
+
+
+
+
+//push question into question div
+
+
+//push answer choices into button divs
+function askQuestions() {
+
+  $("#question_div").empty();
+  $("#button1").empty();
+  $("#button2").empty();
+  $("#button3").empty();
+  $("#button4").empty();
+
+  if (questions[current]) {
+            $("#timer").html("Time remaining: " + count + " secs");
+            $("#question_div").html(questions[current].question);
+            var answersArr = questions[current].answers;
+            var buttonsArr = []; 
+
+            for (var i = 0; i < answersArr.length; i++) {
+              $("#button1").html(questions[current].answers[0]);
+             //button1.attr(questions[current].answers[0]);
+
+              $("#button2").html(questions[current].answers[1]);
+              //button2.attr(questions[current].answers[1]);
+
+              $("#button3").html(questions[current].answers[2]);
+              //button3.attr(questions[current].answers[2]);
+
+              $("#button4").html(questions[current].answers[3]);
+              //button4.attr(questions[current].answers[3]);
+
+                //$('#choices_div').append(button);
+            }
+            //window.triviaCounter = setInterval(timer, 2000);
+
+          } else {
+            $("body").append($("<div/>"), {
+                text: "Unanswered: " + (
+                    questions.length - (answers.correct + answers.incorrect)),
+                class: "result"
+            });
+            $("#start_button").text("Restart").appendTo("body").show();
+        }
+    };
+
+    
+    answer1 = function(correct) {
+      if (button3.clicked===true) {
+        alert("Correct!")
+        correct++;
+      }
+
+      else {
+        alert("Incorrect")
+        incorrect++;
+      }}
+    
+    answer2 = function(correct) {
+      if (button2.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+
+    answer3 = function(correct) {
+      if (button1.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+
+    answer4 = function(correct) {
+      if (button4.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+    
+    answer5 = function(correct) {
+      if (button1.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+
+    answer6 = function(correct) {
+      if (button3.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+        /* var string = correct ? 'correct' : 'incorrect';
+        answers[string]++;
+        $('.' + string).html(string + ' answers: ' + answers[string]); */
+    
+    answer7 = function(correct) {
+      if (button4.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+
+    answer8 = function(correct) {
+      if (button4.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+
+    answer9 = function(correct) {
+      if (button2.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+
+    answer10 = function(correct) {
+      if (button4.clicked===true) {
+        alert("Correct!");
+        correct++;
+      } 
+
+      else {
+        alert("Incorrect");
+        incorrect++;
+      }}
+     
+      
+      for (var i=0; i < questions.length; i++) {
+      var Q = $("<div>");
+      Q.addClass("questionAsked");
+      Q.attr("data-name", questions[i]);
+      Q.text(questions[i]);
+      console.log(questions[i])
+}  
+/* for (var i = 0; i < questions[i].choices; i++) {
+    var b1 = $("<button>");
+    b1.addClass("answer");
+    b1.attr("data-name", questions[i].choices);
+    b1.text(questions[i].choices);
+    console.log(questions[i].choices);
+    $("#button1").ap
+  
+  for (var m = 0; m<questions[m].choices; m++){
+    var b4 = $("<button>");
+    b4.addClass("answer");
+    b4.attr("data-name", answers4[m]);
+    b4.text(answers4[m]);
+    console.log(answers4[m]);
+    $("#button4").append(b4);
+  }pend(b1); 
+  }
+ */
+  /* for (var k = 0; k< questions[k].choices; k++) {
+    var b2 = $("<button>");
+    b2.addClass("answer");
+    b2.attr("data-name", answers2[k]);
+    b2.text(answers2[k]);
+    console.log(answers2[k]);
+    $("#button2").append(b2);
+  }
+
+  for (var l = 0; l<questions[l].choices; l++) {
+    var b3 = $("<button");
+    b3.addClass("answer");
+    b3.attr("data-name", answers3[l]);
+    b3.text(answers3[l]);
+    console.log(answers3[l]);
+    $("#button3").append(b3);
+  }
+ */
+
+
+function decrement(){
+            count--;
+            $("#timer").html(count) ;}
+            
+
+function run(){
+  var intervalId = setInterval(decrement, 20000);
+
+}
+
+
+timer = function() {
+        count--;
+        if (count <= 0) {
+            setTimeout(function() {
+                nextQ();
+            });
+
+        } else {
+            $("#timer").html("Time remaining: " + count + " secs");
+        }
+    };
+
+  nextQ = function() {
+        current++;
+        //clearInterval(window.triviaCounter);
+        $('#timer').html("");
+        //setTimeout(function() {
+            //cleanUp();
+            //ask();
+      //  }, 1000)
+    };
+
+
+
+
+  if (number === 0) {
+        stop();
+        askQuestions()
+      }
+
+
+
+function stop() {
+  clearInterval(intervalId);
+  }
+}
+
+
+
+
+  askQuestions();
+ 
+    /* var b2 = $("<button2>");
+    var b3 = $("<button3>");
+    var b4 = $("<button4>");
+    
+    b2.addClass("answer");
+    b3.addClass("answer");
+    b3.addClass("answer");
+
+    b2.attr("data-name", questions[j][1]);
+    b3.attr("data-name", questions[j][2]);
+    b4.attr("data-name", questions[j][3]);
+
+    
+    b2.text(questions[j][1]);
+    console.log(questions[j][1]);
+    b3.text(questions[j][2]);
+    console.log(questions[j][2]);
+    b4.text(questions[j][3]);
+    console.log(questions[j][3]);
+
+
+    $("#button2").append(b2);
+    $("#button3").append(b3);
+    $("#button4").append(b4);
+
+    } */
+//{
+  /* b1.attr("data-name", questions[j][0]);
+  b1.text(questions[j][0]);
+  console.log(questions[j][0]); */
+
+ /*  b2.attr("data-name"), questions[j][1];
+  b2.text(questions[j][1]);
+  console.log(questions[j][1]);
+
+
+  b3.attr("data-name"), questions[j][2];
+  b3.text(questions[j][2]);
+  console.log(questions[j][2]);
+
+
+  b4.attr("data-name"), questions[j][3];
+  b4.text(questions[j][3]);
+  console.log(questions[j][3]);
+ */
+//}
+
+
+//$("#button1").empty();
+//$("#button2").empty();
+//$("#button3").empty();
+//$("#button4").empty();
+  //for (var k = 0; k < questions.question1.length; k++) {
+  //b1.attr("data-name", questions.question2[0]);
+  //b1.text(questions.question2[0]);
+
+  //b2.attr("data-name"), questions.question2[1];
+  //b2.text(questions.question2[1]);
+
+  //b3.attr("data-name"), questions.question2[2];
+  //b3.text(questions.question2[2]);
+
+  //b4.attr("data-name"), questions.question2[3];
+  //b4.text(questions.question2[3]);
+//}
+
+//$("#button1").empty();
+//$("#button2").empty();
+//$("#button3").empty();
+//$("#button4").empty();
+  //for (var l = 0; l < questions.question3.length; l++) {
+  //b1.attr("data-name", questions.question3[0]);
+  //b1.text(questions.question3[0]);
+
+  //b2.attr("data-name"), questions.question3[1];
+  //b2.text(questions.question3[1]);
+
+  //b3.attr("data-name"), questions.question3[2];
+  //b3.text(questions.question3[2]);
+
+  //b4.attr("data-name"), questions.question3[3];
+  //b4.text(questions.question3[3]);
+//}
+
+//$("#button1").empty();
+//$("#button2").empty();
+//$("#button3").empty();
+//$("#button4").empty();
+  //for (var m = 0; m < questions.question4.length; m++) {
+  //b1.attr("data-name", questions.question4[0]);
+  //b1.text(questions.question4[0]);
+
+  //b2.attr("data-name"), questions.question4[1];
+  //b2.text(questions.question4[1]);
+
+  //b3.attr("data-name"), questions.question4[2];
+  //b3.text(questions.question4[2]);
+
+  //b4.attr("data-name"), questions.question4[3];
+  //b4.text(questions.question4[3]);
+//}
+
+ // $("#button1").empty();
+  //$("#button2").empty();
+  //$("#button3").empty();
+  //$("#button4").empty();
+
+  //for (var n = 0; n < questions.question5.length; n++) {
+  //b1.attr("data-name", questions.question5[0]);
+  //b1.text(questions.question5[0]);
+
+  //b2.attr("data-name"), questions.question5[1];
+  //b2.text(questions.question5[1]);
+
+  //b3.attr("data-name"), questions.question5[2];
+  //b3.text(questions.question5[2]);
+
+  //b4.attr("data-name"), questions.question5[3];
+  //b4.text(questions.question5[3]);
+//}
+
+//$("#button1").empty();
+  //$("#button2").empty();
+  //$("#button3").empty();
+  //$("#button4").empty();
+
+  //for (var o = 0; o < questions.question6.length; o++) {
+  //b1.attr("data-name", questions.question6[0]);
+  //b1.text(questions.question6[0]);
+
+  //b2.attr("data-name"), questions.question6[1];
+  //b2.text(questions.question6[1]);
+
+  //b3.attr("data-name"), questions.question6[2];
+  //b3.text(questions.question6[2]);
+
+  //b4.attr("data-name"), questions.question6[3];
+  //b4.text(questions.question6[3]);
+//}
+
+//$("#button1").empty();
+  //$("#button2").empty();
+  //$("#button3").empty();
+  //$("#button4").empty();
+
+  //for (var p = 0; p < questions.question7.length; p++) {
+  //b1.attr("data-name", questions.question7[0]);
+  //b1.text(questions.question7[0]);
+
+  //b2.attr("data-name"), questions.question7[1];
+  //b2.text(questions.question7[1]);
+
+  //b3.attr("data-name"), questions.question7[2];
+  //b3.text(questions.question7[2]);
+
+  //b4.attr("data-name"), questions.question7[3];
+  //b4.text(questions.question7[3]);
+//}
+
+//$("#button1").empty();
+  //$("#button2").empty();
+  //$("#button3").empty();
+  //$("#button4").empty();
+
+  //for (var q = 0; q < questions.question8.length; q++) {
+  //b1.attr("data-name", questions.question8[0]);
+  //b1.text(questions.question8[0]);
+
+  //b2.attr("data-name"), questions.question8[1];
+  //b2.text(questions.question8[1]);
+
+  //b3.attr("data-name"), questions.question8[2];
+  //b3.text(questions.question8[2]);
+
+  //b4.attr("data-name"), questions.question8[3];
+  //b4.text(questions.question8[3]);
+//}
+
+//$("#button1").empty();
+  //$("#button2").empty();
+  //$("#button3").empty();
+  //$("#button4").empty();
+
+  //for (var r = 0; r < questions.question9.length; r++) {
+  //b1.attr("data-name", questions.question9[0]);
+  //b1.text(questions.question9[0]);
+
+  //b2.attr("data-name"), questions.question9[1];
+  //b2.text(questions.question9[1]);
+
+  //b3.attr("data-name"), questions.question9[2];
+ // b3.text(questions.question9[2]);
+
+  //b4.attr("data-name"), questions.question9[3];
+  //b4.text(questions.question9[3]);
+//}
+
+//$("#button1").empty();
+  //$("#button2").empty();
+  //$("#button3").empty();
+  //$("#button4").empty();
+
+  //for (var s = 0; s < questions.question10.length; s++) {
+  //b1.attr("data-name", questions.question10[0]);
+  //b1.text(questions.question10[0]);
+
+  //b2.attr("data-name"), questions.question10[1];
+  //b2.text(questions.question10[1]);
+
+  //b3.attr("data-name"), questions.question10[2];
+  //b3.text(questions.question10[2]);
+
+  //b4.attr("data-name"), questions.question10[3];
+  //b4.text(questions.question10[3]);
+//}
+
+//timer countdown 20 seconds
+
+//when time up, go to sorry screen, show correct answer for 5 seconds
+//if correct, go to congratulations screen, show for 5 seconds
+
+//after 5 seconds go to next question automatically
+
+//after sorry or congratulations screen for last movie, go to result screen with number of correct, incorrect, and a button to restart the game
+
+
+
+</script>
+  </body>
+
+ 
+
+</html>
